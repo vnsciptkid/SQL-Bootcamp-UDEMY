@@ -1,0 +1,139 @@
+1. Overview
+  - About syntax
+  - Same for major SQL Database
+
+2. SELECT statement
+  - form : SELECT column1, column2, ... FROM table_name
+  - all columns: SELECT * FROM table_name -> if database is large -> slow down, so be careful
+  - SELECT == select : case-sensitive
+
+3. 1st Challenge
+
+4. SELECT with DISTINCT
+  - for all the duplicated elements in a particular columns, just consider as one
+  - Ex: SELECT DISTINCT column1 
+        FROM table_name
+  - More than one column?
+
+5. 2nd Challenge
+  SELECT DISTINCT rating from film;
+  
+6. SELECT with WHERE
+  - Important
+  - Syntax: SELECT column1, ... FROM table_name WHERE conditions;
+  - limits what is printed
+  - Operators: =, >, <, >=, <=, <> or !=, AND, OR
+  - Ex: SELECT first_name, last_name FROM customer WHERE first_name = 'Jamie';
+  - Ex2: SELECT first_name, last_name FROM customer WHERE first_name = 'Jamie' AND last_name = 'Rice';
+  
+7. 3rd Challenge
+  SELECT email FROM customer 
+  WHERE first_name = 'Nancy' 
+  AND last_name = 'Thomas';
+  -> Answer: nancy.thomas@sakilacustomer.org
+
+  SELECT description FROM film 
+  WHERE title = 'Outlaw Hanky';
+  -> Answer: A Thoughtful Story of a Astronaut And a Composer who must Conquer a Dog in The Sahara Desert
+  
+  SELECT phone FROM address
+  WHERE address = '259 Ipoh Drive';
+  -> Answer: 419009857119
+
+8. COUNT
+  - Return the number of rows of output of the SELECT query
+  - Ex: SELECT COUNT(*) FROM table;
+  - Use COUNT with DISTINCT: SELECT COUNT(DISTINCT column) FROM table 
+  
+9. LIMIT
+  - limit the number of rows is printed
+  - Ex: SELECT * FROM table LIMIT 1;
+  
+10. ORDER BY
+  - Normally, the output is printed in which order you input the data
+  - Using ORDER BY to change the order output is printed following a specified criteria.
+  - Ex: SELECT first_name, last_name FROM customer 
+        ORDER BY first_name ASC/DESC; 
+  - Defalt for ORDER BY is ASC
+  - Ordering by multiple columns (How it works?)
+  - SELECT first_name FROM customer
+    ORDER BY last_name;
+    -> last_name dont appear in SELECT (some other platform may not support)
+    
+11. 4th Challenge
+  SELECT customer_id, amount FROM payment
+  ORDER BY amount DESC
+  LIMIT 10;
+  
+  SELECT title, film_id FROM film
+  ORDER BY film_id
+  LIMIT 5;
+  -> Notice: LIMIT is after ORDER BY
+  
+12. BETWEEN
+  Alternative way of writing : value >= low AND value <= high;
+  -> value BETWEEN low AND high;
+  More: value < low and value > hight 
+  can be wrote as : value NOT BETWEEN low AND high;
+  - Ex: SELECT customer_id, amount FROM payment
+        WHERE amount BETWEEN 8 AND 9;
+  - Ex: SELECT amount, payment_date FROM payment
+        WHERE payment_date BETWEEN '2007-02-07' AND '2007-02-15';
+        -> can be used with timestampp
+        
+13. IN
+  value IN (value1, value2, ...)
+  value IN (SELECT value FROM table)
+  -> return true if value is in set of values
+  More : NOT IN
+  - Ex: SELECT customer_id, rental_id, return_date
+        FROM rental
+        WHERE customer_id IN (1,5)
+        ORDER BY return_date DESC;
+  - When to use? What difference with BETWEEN? Dont need to be sequencial order, specific values
+  - How to get the same result but using OR?
+  - Another Ex: SELECT * FROM payment
+                WHERE amount IN (7.99, 8.99);
+              
+14. LIKE
+  - Dont need to specify value explicitly
+  - Syntax: WHERE first_name LIKE 'Jen%';
+            -> Start with Jen (% equal to anything)
+  - Using _ for matching character
+  - Ex: SELECT first_name, last_name FROM customer
+        WHERE first_name LIKE '%er%'
+        -> 'er' somewhere in the first name
+  - Ex2: SELECT first_name, last_name FROM customer
+        WHERE first_name LIKE '_her%'
+        -> _ means any single character
+  - LIKE itself is case-sensitive (A != a)
+  - ILIKE is in-case-sensitive
+
+15. 5th Challenge
+  SELECT COUNT(amount) FROM payment
+  WHERE amount > 5.00;
+  -> Answer: 3618
+  
+  SELECT COUNT(first_name) FROM actor
+  WHERE first_name LIKE 'P%';
+  -> Answer: 5
+  
+  SELECT COUNT(DISTINCT district) FROM address;
+  -> Answer: 378
+  
+  SELECT DISTINCT district FROM address;
+  
+  SELECT COUNT(rating) FROM film
+  WHERE rating = 'R'
+  AND replacement_cost BETWEEN 5 AND 15;
+  
+  SELECT COUNT(title) FROM film
+  WHERE title LIKE '%Truman%'; 
+  -> Answer: 5
+  
+  FINALLY FINISHED. VERY BASIC KNOWLEDGE. NOT CHALLENGING AT ALL
+  
+  
+  
+
+
