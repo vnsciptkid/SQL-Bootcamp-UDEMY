@@ -1,7 +1,9 @@
 # SQL-Bootcamp-UDEMY
 
 Course : The Complete SQL Bootcamp
+
 Instructor : Jose Portilla
+
 This guy has many bestseller courses in UDEMY. And he has a good voice. Also captions is included. So let's try
 
 Cirriculum: 
