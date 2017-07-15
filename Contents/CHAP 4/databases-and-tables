@@ -1,0 +1,17 @@
+1. Overview
+
+2. Creating and restoring a database
+  - 2 ways doing this : 
+    + GUI : easy
+    + query : create database newDatabase;
+    + restore : link to the path of file
+
+3. 1st Challenge
+
+4. Restoring a table schema
+- Schema? Just table names and data types only, not contains data
+- How? Applied for existing database or newly created database. 
+- In options of restoring database, choose 'Only schema' and 'clear before ..' with existing database
+
+5. 2nd Challange
+
