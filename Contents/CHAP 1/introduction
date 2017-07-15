@@ -1,0 +1,32 @@
+3. Database Overview
+- What are databases?
+  + store and organize data
+  + useful dealing with large amount of data
+- Why use databases?
+  + speadsheets vs databases
+    table: rows and columns
+- Platform: 
+  + postgreSQL
+  + MySQL
+  + SQL Server
+  + others ...
+- SQL : a language used to manipulate database, same for many platform
+
+4. Install pgadmin
+- What? GUI 
+- For this course: pgAdmin 3
+- Installer: https://www.postgresql.org/download/
+- Windows installers
+- Interactive installer by EnterpriseDB
+- Password: root 
+- Port: 5432 (Default)
+- Locale: Default
+- Uncheck last option
+- Run pgAdmin, enter password
+- Create new blank database named 'dvdrental'. Save
+- Configure PostgreSQL binary path: 
+  + File -> Preferences -> Path -> Binary Path
+  + C:\Program Files\PostgreSQL\9.6\bin -> To restore db from file and some other utilities
+- dvdrental -> Restore -> Link to file .tar -> Refresh -> Ready to go
+- Try some first queries
+- Done 
