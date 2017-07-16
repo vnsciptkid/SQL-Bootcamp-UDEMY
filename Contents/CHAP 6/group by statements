@@ -1,0 +1,25 @@
+1. MIN MAX SUM AVG
+  - aggregate function
+  - Syntax: 
+  
+2. GROUP BY
+  - Syntax: 
+  
+3. Challenge
+  - SELECT staff_id, COUNT(amount), SUM(amount) 
+    FROM payment
+    GROUP BY staff_id;
+    -> Answer: 2-7304-31059, 1-7292-30252;
+  
+  - SELECT rating, AVG(replacement_cost)  
+    FROM film
+    GROUP BY rating;
+    -> Answer: 
+    
+  - SELECT customer_id, SUM(amount) 
+    FROM payment
+    GROUP BY customer_id
+    LIMIT 5;
+    -> Answer:
+    
+  
