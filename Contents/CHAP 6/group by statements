@@ -22,4 +22,57 @@
     LIMIT 5;
     -> Answer:
     
+4. HAVING
+  - Syntax: 
+  SELECT column_1, aggregate_function(column_2)
+  FROM table_name
+  GROUP BY column_1
+  HAVING condition;
+  -> What the differences between HAVING and WHERE ?
+    + Same: set condition
+    + WHERE applied before GROUP BY
+    + HAVING applied after GROUP BY
+    
+  - Ex: SELECT customer_id, SUM(amount)
+        FROM payment
+        GROUP BY customer_id
+        HAVING SUM(amount) > 200;
+        
+  - Ex2:  SELECT rating, AVG(rental_rate)
+          FROM film
+          WHERE rating IN ('R', 'G', 'PG')
+          GROUP BY rating
+          HAVING AVG(rental_rate) < 3;
+          
+5. Challenge
+  SELECT customer_id, COUNT(payment_id) 
+  FROM payment
+  GROUP BY customer_id
+  HAVING COUNT(payment_id) >= 40;
+  
+  SELECT rating, AVG(rental_duration)
+  FROM film
+  GROUP BY rating
+  HAVING AVG(rental_duration) > 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   
