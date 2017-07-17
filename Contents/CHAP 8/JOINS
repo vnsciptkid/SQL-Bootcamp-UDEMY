@@ -1,0 +1,20 @@
+1. AS Statement:
+  - Ex: SELECT payment_id AS my_payment_column
+        FROM payment;
+  - Ex2: SELECT customer_id, SUM(amount) AS total_spent
+         FROM payment
+         GROUP BY customer_id;
+         
+  -> Change the name of the collumn in the output in meaningful manner
+  
+2. Overview of inner JOIN:
+  - Syntax: 
+  -> Idea: Using the same column between 2 tables to join 2 tables together.
+  - Ex: 
+3. 
+
+4. 
+
+5. 
+
+6. 
