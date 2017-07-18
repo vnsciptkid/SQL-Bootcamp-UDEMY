@@ -8,13 +8,69 @@
   -> Change the name of the collumn in the output in meaningful manner
   
 2. Overview of inner JOIN:
-  - Syntax: 
+  - Syntax: SELECT A.pka, A.c1, B.pkb, B.c2
+            FROM A
+            INNER JOIN B ON A.pka = B.fka;
   -> Idea: Using the same column between 2 tables to join 2 tables together.
-  - Ex: 
-3. 
+  - Several kinds of joins including INNER JOIN, OUTER JOIN, self-join      
+  - Ex: SELECT 
+        customer.customer_id, 
+        first_name, 
+        last_name,
+        email, 
+        amount,
+        payment_date
+        FROM customer
+        INNER JOIN payment ON payment.customer_id = customer.customer_id
+        ORDER BY first_name;
 
-4. 
+3. Example of INNER JOINS
+- SELECT payment_id, amount, first_name, last_name
+  FROM payment
+  INNER JOIN staff ON payment.staff_id = staff.staff_id
+  
+- SELECT title, COUNT(title) AS copies_at_store1
+  FROM inventory
+  INNER JOIN film ON inventory.film_id = film.film_id
+  WHERE store_id = 1
+  GROUP BY title
+  ORDER BY title;
+  
+- SELECT film.title, name AS movie_language
+  FROM film
+  INNER JOIN language AS lan ON lan.language_id = film.language_id;
+  -> (rename can works without AS)
+  
+4. Overview of JOIN types:
+- INNER JOINS produces ONLY set of records that match in both Table A and Table B
+- FULL OUTER JOIN produces all the records in Table A and Table B
+  + matching records
+  + if there no match, the missing side will contain null
+- LEFT OUTER JOIN
+- RIGHT OUTER JOIN
+- LEFT OUTER JOIN with WHERE
+- FULL OUTER JOIN with WHERE
+-> When to use each type?
 
-5. 
+5. Example of OUTER JOINS
+- SELECT film.film_id, film.title, inventory_id
+  FROM film
+  LEFT OUTER JOIN inventory ON inventory.film_id = film.film_id
+  WHERE inventory.film_id IS NULL
+  ORDER BY film.title;
+  
+- SELECT film.film_id, film.title, inventory_id
+  FROM film
+  LEFT OUTER JOIN inventory ON inventory.film_id = film.film_id
+  WHERE inventory_id IS NULL;
+  -> Same result above
 
-6. 
+6. UNION
+- Combine
+- When to use?
+- Rules
+  + same number columns
+  + comparable data types
+- UNION ALL != UNION ? UNION removes duplicated rows
+
+NO CHALLENGES FOR THIS SECTION :(
