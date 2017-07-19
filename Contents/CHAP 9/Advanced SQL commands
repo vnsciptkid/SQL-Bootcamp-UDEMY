@@ -42,3 +42,5 @@
 
 5. selfjoin  
 - Combine row with other rows within the same table
+- Common interview question:  
+https://blog.sqlauthority.com/2016/03/27/self-join-explain-example-interview-question-week-064/ 
