@@ -1,0 +1,17 @@
+1. Timestamps and Extract
+  - SELECT extract(day from payment_date) AS day FROM payment;
+  
+  - SELECT SUM(amount), extract(month from payment_date) AS month
+    FROM payment
+    GROUP BY month
+    ORDER BY SUM(amount) DESC;
+
+2. mathematical functions
+  - SELECT  rental_id / customer_id AS new_id FROM payment;
+  - SELECT round(AVG(amount), 2) FROM payment;
+
+3. String function and operators
+
+4. subquery
+
+5. selfjoin  
