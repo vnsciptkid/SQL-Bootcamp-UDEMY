@@ -24,3 +24,6 @@ Cirriculum:
   15. Bonus offers
   
 Lets do it !
+
+This page can be a additional exercise source for this COURSE (using Oracle database)
+https://db.grussell.org/sql/index.cgi
