@@ -25,5 +25,7 @@ Cirriculum:
   
 Lets do it !
 
-This page can be a additional exercise source for this COURSE (using Oracle database)
-https://db.grussell.org/sql/index.cgi
+This pages can be a additional exercises for this COURSE 
+- https://db.grussell.org/sql/index.cgi  (using Oracle database)
+- OR
+- http://www.graspsql.com/practice-center/
