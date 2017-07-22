@@ -41,6 +41,8 @@ LIMIT 10;
 SELECT joindate FROM cd.members
 ORDER BY joindate DESC
 LIMIT 1; 
+-> Alternative shorter way: 
+SELECT max(joindate) FROM cd.members
 
 10. Produce a count of the number of facilities that have a cost to guests of 10 or more?
 SELECT COUNT(facid) FROM cd.facilities
@@ -52,8 +54,10 @@ WHERE guestcost >= 10;
 Output consists of facid, slots, sorted by number of slots
 SELECT facid, SUM(slots)
 FROM cd.bookings
+WHERE starttime BETWEEN '2012-09-01' AND '2012-09-30'
 GROUP BY facid
 ORDER BY SUM(slots) DESC
+-> we dont use HAVING in this case (HAVING just put a condition for aggregate funtion)
 
 13. Produce a list of facilities with more than 1000 slots booked. Output consists of facid, total slots, sorted by # of slots
 SELECT facid, SUM(slots)
