@@ -10,31 +10,167 @@
    
 003 Primary and foreign key
   -> Primary: identify a "row" (record) uniquely in a table
-  - Have to declare some contraints when create table (what contraint is?)
+  - Have to declare some contraints when create table (what contraint is?, types of contraints?)
   - Every table has only one primary key: customer has customerid
   
   Syntax: CREATE TABLE table_name (column_name data_type PRIMARY KEY, column_name data_type,...);
   
-  -> Foreign Key: uniquely identify a row in another table (referencing table)
+  -> Foreign Key: uniquely identify a row in another table (child table)
+  - Table can have multiple foreign key
+  - Foreign key constraint -> (what, why?) -> maintains referential integrity between child and parent table (what it means?)
   
+004 Create TABLE (define SCHEMA)
+  - Syntax:  
+  CREATE TABLE table_name (column_name TYPE column_constraint, table_constraint) INHERITS existing_table_name;
+  -> column_contraint like NOT NULL
+  -> What INHERITS means? -> take all columns from existing_table and combine with newly created columns (optional)
+  -> Column contraints: NOT NULL, UNIQUE (can have many NULL, postgresql treats NULL as UNIQUE)
+  But SQL standard allow only one NULL value in column that has UNIQUE constraint *NOTICE*
+  - PRIMARY KEY = NOT NULL + UNIQUE -> What we can conclude? 
+  obviously we can define a column as PRIMARY KEY by setting these 2 constraints
+  - What if a table have more than one PRIMARY KEY? table-level contraint comes in
+  - CHECK contraint -> check condition when insert, update data (e.g. price column must be positive)
+  - REFERENCES : same with CHECK but using for FOREIGN KEY(in another table)
+  
+  -> Table CONSTRAINTS:
+  - UNIQUE
+  - PRIMARY KEY
+  - CHECK
+  - REFERENCES
+  
+  -> Example: 
+  CREATE TABLE account(                         -> column_name TYPE contraint,...,...
+  user_id serial PRIMARY KEY,                   -> serial: auto increment
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  email VARCHAR(350) UNIQUE NOT NULL,
+  create_on TIMESTAMP NOT NULL,
+  last_login TIMESTAMP);
+  
+  CREATE TABLE role(
+  role_id serial PRIMARY KEY,
+  role_name VARCHAR(255) UNIQUE NOT NULL );
+  
+  CREATE TABLE account_role (
+  user_id integer NOT NULL
+  role_id integer NOT NULL
+  grant_date TIMESTAMP without time zone,
+  PRIMARY KEY (user_id, role_id), 
+  
+ // some table-contraints stuff here
+ );
+  
+005 Challenge Create Table  
 
-004
+006 Solution
+  CREATE TALBE leads(
+  user_id serial PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  email VARCHAR(50) UNIQUE NOT NULL,
+  minutes integer NOT NULL, 
+  sign_up_ts TIMESTAMP NOT NULL  
+  );
 
-005
+007 INSERT
+  -> Syntax: 
+  INSERT INTO table(column1, column2, ...)
+  VALUES (value1, value2, ...);
+  -> multiple INSERT can be done by:
+  VALUES (value1, value2, ....), (value1, value2, ....), ...;
+  -> INSERT data that comes from another table
+  Syntax: INSERT INTO table
+          SELECT column1, column2,...
+          FROM another_table
+          WHERE condition;
+          
+  - Example:
+    CREATE TABLE link (
+      id serial PRIMARY KEY,
+      url VARCHAR(255) NOT NULL,
+      name VARCHAR(255) NOT NULL,
+      description VARCHAR(255),
+      rel VARCHAR(50)
+    );
+    
+    INSERT INTO link(url, name)
+    VALUES
+    ('www.google.com', 'Google');
+    
+    INSERT INTO link(url, name)           -> insert multiple values
+    VALUES
+    ('www.yahoo.com', 'Yahoo'),
+    ('www.google.com', 'Google')
+    ;
+    
+    CREATE TABLE link_copy (LIKE link);   -> create talbe with same structure (Schema)
+    SELECT * FROM link_copy;
+    -> Syntax: CREATE TABLE new_table (LIKE old_table);
+    
+    INSERT INTO link_copy         -> the id is copied as well
+    SELECT * FROM link
+    WHERE name = 'Amazon';
+  
+008 UPDATE
+  -> change value of columns
+  - Syntax: UPDATE table
+            SET column1 = value1,
+                column2 = value2,...
+            WHERE condition;
 
-006
+  - Example: 
+  -> Update all the description fields
+  UPDATE link
+  SET description = 'Empty Description';
 
-007
+  UPDATE link
+  SET description = 'Name start with an A'
+  WHERE name LIKE 'A%';                           -> based on condition
 
-008
+  UPDATE link
+  SET description = name;       -> update description such that it has same name as name column
 
-009
+  UPDATE link
+  SET description = 'New Description'
+  WHERE id = 1
+  RETURN id, url, name, description;      -> return updated records
 
-010
+009 DELETE
+  Syntax: DELETE FROM table WHERE condition; -> if no condition , all table is deleted
+  -> delete ruturn number of rows deleted 
 
-011
+  - Example: 
+  DELETE FROM link
+  WHERE name  LIKE 'A%'
+  RETURNING *;              -> return the deleted rows
 
-012
+010 ALTER TABLE
+  -> Keywords: ADD COLUMN, DROP COLUMN, RENAME COLUMN, ADD CONSTRAINT, RENAME TO
+  
+  - Example
+  ALTER TABLE link ADD COLUMN active boolean; -> alter the table that's already exist
+  SELECT * FROM link;
+  
+  ALTER TABLE link RENAME COLUMN title TO new_title_name; -> set a new name for a existed column
+  
+  ALTER TABLE link RENAME TO url_table;   -> set a new name for entire table
+  SELECT * FROM link -> doesn't work
+  SELECT * FROM url_table
+  
+011 DROP TABLE
+  DROP TABLE [IF EXISTS] table_name;    -> IF EXISTS is optional, you'll get an notice if table doesn't exist instead of an error
+  -> Example: 
+  DROP TABLE IF EXISTS link_copy;
+  -> Keyword: RESTRICT -> refuse drop table if any table depend on it 
+  Notice: PostgreSQL use RESTRICT by default
+  -> Keyword: CASCADE (?)
+  
+012 CHECK CONSTRAINTS
+
+013 NOT NULL CONSTRAINT
+
+014 UNIQUE CONSTRAINT
+
 
 
 
